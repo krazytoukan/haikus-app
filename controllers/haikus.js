@@ -5,7 +5,7 @@ exports.index = (req, res) => {
     if (err) {
       res.json({ status: "FAIL", err })
     } else {
-      res.json({ status: "SUCCESS", payload: { haikus } })
+      res.json({ status: "SUCCESS", payload: haikus })
     }
   })
 }
@@ -15,7 +15,7 @@ exports.showHaiku = (req, res) => {
     if (err) {
       res.json({ status: "FAIL", err })
     } else {
-      res.json({ status: "SUCCESS", payload: { haiku } })
+      res.json({ status: "SUCCESS", payload:  haiku })
     }
   })
 }
@@ -25,27 +25,27 @@ exports.create = (req, res) => {
     if (err) {
       res.json({ status: "FAIL", err })
     } else {
-      res.json({ status: "SUCCESS", payload: {newHaiku} })
+      res.json({ status: "SUCCESS", payload: newHaiku })
     }
   })
 }
 
 exports.update = (req, res) => {
-  Haiku.findByIdAndUpdate(req.params.id, req.body , (err, haikuById) => {
+  Haiku.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, haikuById) => {
     if (err) {
       res.json({ status: "FAIL", err })
     } else {
-      res.json({ status: "SUCCESS", payload: { haikuById } })
+      res.json({ status: "SUCCESS", payload:  haikuById  })
     }
   })
 }
 
 exports.destroy = (req, res) => {
-  Haiku.findByIdAndRemove({ _id: req.params.id }, (err, deleteHaiku) => {
+  Haiku.findByIdAndRemove(req.params.id, (err, deleteHaiku) => {
     if (err) {
       res.json({ status: "FAIL", err })
     } else {
-      res.json({ status: "SUCCESS", payload: {deleteHaiku} })
+      res.json({ status: "SUCCESS", payload: deleteHaiku })
     }
   })
 }
