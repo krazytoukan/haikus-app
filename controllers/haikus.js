@@ -31,7 +31,7 @@ exports.create = (req, res) => {
 }
 
 exports.update = (req, res) => {
-  Haiku.update({ _id: req.params.id }, { $set: req.body }, (err, haikuById) => {
+  Haiku.findByIdAndUpdate(req.params.id, req.body , (err, haikuById) => {
     if (err) {
       res.json({ status: "FAIL", err })
     } else {
