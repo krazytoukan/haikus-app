@@ -1,3 +1,4 @@
+require('dotenv').config()
 const
   express = require('express'),
   app = express(),
@@ -6,7 +7,7 @@ const
   PORT = 3000,
   haikuRouter = require('./router/haikus')
 
-mongoose.connect('mongodb://localhost/haiku', (err) => {
+mongoose.connect(process.env.MONGODB_URI,  {useNewURLParser: true}, (err) => {
   console.log(err || "Successfully connected to MONGOD")
 })
 
